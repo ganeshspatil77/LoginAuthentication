@@ -8,6 +8,7 @@ loginRouter.post('/login', async (req, res) => {
 
     try {
         const { usename, password } = req.body.criteria;
+        console.log(usename, password);
         
         const user = await db.user.findFirst({
             where: {
@@ -20,7 +21,11 @@ loginRouter.post('/login', async (req, res) => {
                 email: user?.email,
                 id: user?.id
             }, process.env.JWT_SEC as string)
-            return res.status(200).json({ token });
+            return res.status(200).json({ 
+                errorCode:"000000",
+                errorDescription:'success',
+                data:{token:token} 
+                });
         }
 
         if (!usename) {
@@ -30,6 +35,7 @@ loginRouter.post('/login', async (req, res) => {
         }
     } catch (error) {
         return res.json({
+            errorCode:101010,
             errorDescription:'Invalid Crendentials'
         })
     }
@@ -51,6 +57,7 @@ loginRouter.post("/signup", async (req, res) => {
 
         if (checkUser) {
             return res.json({
+                errorCode:999999,
                 errorMessage:'user already present'
             })
         }
@@ -63,10 +70,15 @@ loginRouter.post("/signup", async (req, res) => {
             }
         })
     
-        return res.json({ user })
+        return res.json({
+            errorCode:"000000",
+            errorDescription:'User created successfully.',
+            data:[user]
+         })
     } catch (error) {
         return res.json({
-
+            errorCode:101010,
+            errorDescription:'error'
         })
     }
  

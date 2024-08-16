@@ -3,13 +3,14 @@ import { loginRouter } from './routes/login';
 import { userRouter } from './routes/user';
 import { authMiddleware } from './middelwares/auth';
 import { Response, Request, NextFunction, Errback } from 'express';
+import cors from "cors";
 const app = express();
 
 // (async () => {
 //     await connectToMysql();
 // })();
 
-
+app.use(cors())
 app.use(express.json());
 
 app.use('/user', loginRouter);
