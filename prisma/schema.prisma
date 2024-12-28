@@ -17,6 +17,7 @@ model User{
   id String @id @default(uuid())
   useName String @unique
   Password String
-  email String
+  email String @unique
+  otp Int?
 }
 

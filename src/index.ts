@@ -2,7 +2,7 @@ import express from 'express';
 import { loginRouter } from './routes/login';
 import { userRouter } from './routes/user';
 import { authMiddleware } from './middelwares/auth';
-import { Response, Request, NextFunction, Errback } from 'express';
+import { Response, Request, NextFunction} from 'express';
 import cors from "cors";
 const app = express();
 
@@ -13,9 +13,8 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
-app.use('/user', loginRouter);
-app.use('/user', loginRouter);
-app.use(authMiddleware);
+app.use('/auth', loginRouter);
+// app.use(authMiddleware);
 app.use('/user', userRouter);
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

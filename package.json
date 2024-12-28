@@ -18,8 +18,10 @@
     "@types/mysql": "^2.15.26",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "google-auth-library": "^9.15.0",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
+    "nodemailer": "^6.9.16",
     "prisma": "^5.18.0",
     "typescript": "^5.5.4"
   },
